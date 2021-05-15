@@ -2,14 +2,16 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
 class SearchBook extends Component {
-
     render() {
         const allBooks = this.props.searchedBooks === undefined ? [] : this.props.searchedBooks
         const shelvedBooks = this.props.books === undefined ? [] : this.props.books
+        allBooks.length && allBooks.forEach(book => {
+            book.shelf = "none"
+        });
         allBooks.length && allBooks.map((book) => (
-            shelvedBooks.map((b) => (
-                book['shelf'] = book.id === b.id ? b.shelf : "none"
-            ))
+            shelvedBooks.map((b) => ((
+                book.id ===  b.id && (book.shelf = b.shelf)
+            )))
         ))
         return(
             <div className="search-books">
@@ -24,7 +26,8 @@ class SearchBook extends Component {
                     <div className="search-books-input-wrapper">
                         <input type="text" 
                             placeholder="Search by title or author" 
-                            onChange={(event) => this.props.onSearch(event.target.value.trim())}
+                            onChange={(event) =>
+                                 this.props.onSearch(event.target.value.trim())}
                             />
                     </div>
                 </div>
