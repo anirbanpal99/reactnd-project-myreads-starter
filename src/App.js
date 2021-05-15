@@ -30,6 +30,7 @@ class BooksApp extends React.Component {
       })
       }))
     })
+    this.setState({searchedBooks: []})
   }
 
   searchBook = (query) => {
@@ -59,6 +60,7 @@ class BooksApp extends React.Component {
             }}
            onSearch={this.searchBook}
            searchedBooks={this.state.searchedBooks}
+           books={this.state.books}
           />
         )} />
       </div>

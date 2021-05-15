@@ -5,6 +5,12 @@ class SearchBook extends Component {
 
     render() {
         const allBooks = this.props.searchedBooks === undefined ? [] : this.props.searchedBooks
+        const shelvedBooks = this.props.books === undefined ? [] : this.props.books
+        allBooks.length && allBooks.map((book) => (
+            shelvedBooks.map((b) => (
+                book['shelf'] = book.id === b.id ? b.shelf : "none"
+            ))
+        ))
         return(
             <div className="search-books">
                 <div className="search-books-bar">
@@ -17,9 +23,9 @@ class SearchBook extends Component {
                     </Link>
                     <div className="search-books-input-wrapper">
                         <input type="text" 
-                        placeholder="Search by title or author" 
-                        onChange={(event) => this.props.onSearch(event.target.value.trim())}
-                        />
+                            placeholder="Search by title or author" 
+                            onChange={(event) => this.props.onSearch(event.target.value.trim())}
+                            />
                     </div>
                 </div>
                 <div className="search-books-results">

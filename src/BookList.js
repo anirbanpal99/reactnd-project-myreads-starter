@@ -3,6 +3,11 @@ import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf';
 
 class BookList extends Component {
+
+  filterBy = (shelf) => {
+    return this.props.books.filter((book) => book.shelf === shelf)
+  }
+
     render() {
         return(
             <div className="list-books">
@@ -16,21 +21,21 @@ class BookList extends Component {
                     Currently Reading
                     </h2>
                   <BookShelf
-                   books={this.props.books.filter((book) => book.shelf === "currentlyReading")} 
+                   books={this.filterBy("currentlyReading")} 
                    onShelfUpdate={this.props.onShelfUpdate}
                   />
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Want to Read</h2>
                   <BookShelf
-                   books={this.props.books.filter((book) => book.shelf === "wantToRead")} 
+                   books={this.filterBy("wantToRead")} 
                    onShelfUpdate={this.props.onShelfUpdate}
                   />
                 </div>
                 <div className="bookshelf">
                   <h2 className="bookshelf-title">Read</h2>
                   <BookShelf
-                   books={this.props.books.filter((book) => book.shelf === "read")} 
+                   books={this.filterBy("read")} 
                    onShelfUpdate={this.props.onShelfUpdate}
                   />
                 </div>
