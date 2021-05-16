@@ -66,7 +66,7 @@ class SearchBook extends Component {
                                     ? 
                                     <div className="book-authors">
                                        { book.authors.map((author) => (
-                                             <p>{author}</p>
+                                             <p key={author}>{author}</p>
                                         ))}
                                     </div>
                                     : ""
